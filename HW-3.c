@@ -1,27 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define between(x, lower, upper) (lower <= x && x < upper) //funkcija
+
+#define between(x, lower, upper) (lower <= x && x < upper) //function
 
 int main ()
 {
     int x ,y, i, j;
-    scanf("%d %d", &x, &y); //preberemo velikost 2-dimenzionalne tabele
+    scanf("%d %d", &x, &y); //read height and length
 
 
-    int **map; // naredimo tabelo
-    map = malloc (x * sizeof (int *));
+    int **map = malloc (x * sizeof (int *));
+    
     for (i = 0; i < x; i++)
         map[i] = malloc (y * sizeof (int));
 
     for(i = 0; i < x; i++)
     {
-            for (j = 0; j < y; j++)
-            {
-                map[i][j] = -1;
-            }
+        for (j = 0; j < y; j++)
+                map[i][j] = 0;
+                
     }
 
-    int number = 0;
+    int number = 1;
     map[0][0] = number;
 
     int a, b;
@@ -30,9 +30,8 @@ int main ()
     {
         if (between (a, 0, x) && between (b, 0 ,y))
         {
-            map[a][b]= -8; //nastavimo mino na -8
+            map[a][b]= -1; //mine go to -1
         }
-
     }
 
  int k;
@@ -46,19 +45,19 @@ int main ()
 
                 if (map[i][j] == number)
                 {
-                    if( between (i + 1, 0 ,x)  && map[i + 1][j] == -1 ) //gor
+                    if( between (i + 1, 0 ,x)  && map[i + 1][j] == -1 ) //up
                     {
                         map[i + 1][j] = number + 1;
                     }
-                    if(  between (i - 1, 0 ,x) && map[i - 1][j] == -1 ) //dol
+                    if(  between (i - 1, 0 ,x) && map[i - 1][j] == -1 ) //down
                     {
                         map[i - 1][j] = number + 1;
                     }
-                    if(  between (j + 1, 0 ,y) && map[i][j + 1] == -1 ) //gor
+                    if(  between (j + 1, 0 ,y) && map[i][j + 1] == -1 ) //right
                     {
                         map[i][j + 1] = number + 1;
                     }
-                    if( between (j - 1, 0 ,y) && map[i][j - 1] == -1 ) //gor
+                    if( between (j - 1, 0 ,y) && map[i][j - 1] == -1 ) //left
                     {
                         map[i][j - 1] = number + 1;
                     }
@@ -68,8 +67,8 @@ int main ()
         number++;
    }
 
-//testiranje tabele
-  /*  for(i = 0; i < x; i++)
+//TEST TABLE
+ /*  for(i = 0; i < x; i++)
     {
         for (j = 0; j < y; j++)
         {
@@ -77,8 +76,8 @@ int main ()
         }
     printf("\n\n");
     }
-  */
+ */
 
-    printf ("%d", map[x - 1][y - 1]);
+    printf ("%d", map[x - 1][y - 1]-1);
     return 0;
 }
