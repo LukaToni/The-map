@@ -1,0 +1,10 @@
+The map is represented as a network of x times y cells. In some cells are mine. 
+Write a program that calculates the minimum number of movements beyond the boundaries of the cells 
+(ie true 4-adjacency), which can be reached from the cell (0,0) in cell (x-1, y-1) and never step on a mine. 
+
+The program should first read the size of a map(x, y) then the position of all of the mines,
+wherein the position of each mine described by its coordinates. 
+
+The program should display the number of movements and the search for the end of the line.
+Fullest map contains 1000 x 1000 pixels. If the path between the initial and final cell due to the 
+unfavorable position of min can not be found, the program displays -1.
